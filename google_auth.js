@@ -22,11 +22,11 @@ function onApiLoad()
 
 function onAuthApiLoad()
 {
-// RJ 12.01.15 The Client_id ( and the api key ) should be taken from the Global (see above)
+// 12.01.15 The Client_id ( and the api key ) should be taken from the Global (see above)
 
     window.gapi.auth.authorize({
-            'client_id':'392508560265-pf4s77qsrvu6l7dckm9clgicj8fhp1lq.apps.googleusercontent.com',
-            //'apiKey':'AIzaSyAlWrf20Z3gjpqmAbR38exsIZvFUvSsTyM',
+            'client_id':'***********************', // client ID supllied by google 
+            //'apiKey':'******' // API key if needed 
             'scope':['https://www.googleapis.com/auth/drive']
         },handleAuthResult);
 } 
@@ -50,7 +50,7 @@ function handleAuthResult(authResult)
 
 
 function searchPath()
-// RJ 15.01.15 The folder must be within the path of the default folder. If the default folder is not set for the function, then open the picker in the root
+// 15.01.15 The folder must be within the path of the default folder. If the default folder is not set for the function, then open the picker in the root
 /*
 this function searches for the path of the folder that we get from the default path in Apex;
 we have to make an actual REST request to the Google endpoint, because the javascript API dosent support this search; (of course you ca use different functions like https://developers.google.com/drive/web/folder , https://developers.google.com/drive/v2/reference/files/list)
@@ -64,7 +64,7 @@ we have to make an actual REST request to the Google endpoint, because the javas
     if (!accessToken) {
         return;
     }
-	var s_folder = $v("P14_MM_FOLDER_NAME"); //new_folder_name1
+    var s_folder = $v("P14_MM_FOLDER_NAME"); //new_folder_name1
     var url = "https://www.googleapis.com/drive/v2/files?q=title+%3D+'"+s_folder+ "'+and+mimeType+%3D+'application%2Fvnd.google-apps.folder'"
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url, true);
@@ -87,13 +87,13 @@ we have to make an actual REST request to the Google endpoint, because the javas
 }
 
 function uploadFile() 
-// RJ 15.01.15 The folder must be within the path of the default folder. If the default folder is not set for the function, then open the picker in the root
+// 15.01.15 The folder must be within the path of the default folder. If the default folder is not set for the function, then open the picker in the root
 /*
 create a folder with the specified name that we get from the Apex variable, and we set it to s_folder; 
 */
 
 {
-		var s_folder = $v("P14_MM_FOLDER_NAME");
+	var s_folder = $v("P14_MM_FOLDER_NAME");
         gapi.client.load('drive', 'v2', function() {
           //createPublicFolder(new_folder_name1 + new_folder_name2);   // the name of the folder we want to create- user input
 		  createPublicFolder(s_folder);
@@ -120,8 +120,8 @@ function createPublicFolder(folderName)
           //var share_with = $v("P14_MM_SHARE_WITH"); //
 		  returned_folder_id = resp.id;
 		  
-// RJ 12.01.15 The folder id and the folder link is to be saved in Apex variables, in order to write them to MM_GA_REF. But only if the GA Folder is set. If not only direct links to the documents
-// RJ 12.01.15 are going to be save to the global variables and afterwards to the MM_GA_REF (see below)
+//  12.01.15 The folder id and the folder link is to be saved in Apex variables, in order to write them to MM_GA_REF. But only if the GA Folder is set. If not only direct links to the documents
+//  12.01.15 are going to be save to the global variables and afterwards to the MM_GA_REF (see below)
 		  
 		  //alert(returned_folder_id);
 		  
@@ -202,7 +202,7 @@ function pickerCallback(data)
 		  alert(f_id);
 		  alert(f_url);
 		  console.log(f_url);
-// RJ 12.01.15 These variables are always set, as a result of any upload in the picker..
+// 12.01.15 These variables are always set, as a result of any upload in the picker..
       /*  $s("P14_MM_DOC_LINK", url);
 		  $s("P14_MM_DOC_ID", f_id);
 		  $s("P14_MM_TITLE", file_name); */
