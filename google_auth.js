@@ -16,7 +16,7 @@ var returned_folder_id;
 function onApiLoad()
 {
 	
-	gapi.load('auth',{'callback':onAuthApiLoad}); 
+    gapi.load('auth',{'callback':onAuthApiLoad}); 
     gapi.load('picker');a
 }
 
