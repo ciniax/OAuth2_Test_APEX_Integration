@@ -3,7 +3,7 @@ var returned_folder_id;
 
 // The Client_id and the api key must be read from a global variables already set in Apex
 // The API key and Client_id should be read from MM_CLOUD_OAUTH where mm_firm_id is set and the MM_APP_ID = 'GOOGLE'
-//var api_key = 'AIzaSyAlWrf20Z3gjpqmAbR38exsIZvFUvSsTyM';
+//var api_key = 'AssignedAPIkey';
 //var new_folder_name1 = 'Test0001';
 //var new_folder_name2 = 'Hansenss';
 
