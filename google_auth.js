@@ -1,5 +1,5 @@
-var oauthToken;
-var returned_folder_id;
+var oauthToken; // 
+var returned_folder_id; //
 
 // The Client_id and the api key must be read from a global variables already set in Apex
 // The API key and Client_id should be read from MM_CLOUD_OAUTH where mm_firm_id is set and the MM_APP_ID = 'GOOGLE'
@@ -7,11 +7,6 @@ var returned_folder_id;
 //var new_folder_name1 = 'Test0001';
 //var new_folder_name2 = 'Hansenss';
 
-/*
-
-
-
-*/
 
 function onApiLoad()
 {
@@ -26,8 +21,8 @@ function onAuthApiLoad()
 
     window.gapi.auth.authorize({
             'client_id':'***********************', // client ID supllied by google 
-            //'apiKey':'******' // API key if needed 
-            'scope':['https://www.googleapis.com/auth/drive']
+            //'apiKey':'******' // API key if needed supplied by google
+            'scope':['https://www.googleapis.com/auth/drive'] // 
         },handleAuthResult);
 } 
 
@@ -35,7 +30,6 @@ function handleAuthResult(authResult)
 {
        
 	   if(authResult && !authResult.error){
-            
             oauthToken = authResult.access_token;
 	        $s("P14_GOOGLE_TOKEN", oauthToken);
             searchPath();
@@ -45,7 +39,7 @@ function handleAuthResult(authResult)
 }
 
 
-//var path = '/Customers/kunder/rchives'; // is case sensitive;
+//var path = '/Customers/kunder/rchives'; // is case sensitive; path to our Apex folder;
 //var folder = path.substring(path.lastIndexOf("/")+1); 
 
 
@@ -54,9 +48,6 @@ function searchPath()
 /*
 this function searches for the path of the folder that we get from the default path in Apex;
 we have to make an actual REST request to the Google endpoint, because the javascript API dosent support this search; (of course you ca use different functions like https://developers.google.com/drive/web/folder , https://developers.google.com/drive/v2/reference/files/list)
-
-
-
 */
 
 {
@@ -150,7 +141,6 @@ function createPicker()
 - the function that actually builds the javascript drive interface;
 - we can add different views and actions;
 - google source: https://developers.google.com/picker/docs/ ;
-
 */
 { //var brows_lang=$v('CTR_MM_LANG_ID');    
   //alert(ids);
@@ -158,7 +148,7 @@ function createPicker()
                     .setOAuthToken(oauthToken)
 					//.setOrigin(window.location.protocol + '//' + window.location.host) // so it works on Chrome 18122014
 					//.setDeveloperKey(api_key)
-                    //.setAuthUser(account.get('email'))
+                    			//.setAuthUser(account.get('email'))
                     .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
 					//.setLocale('')
                     .addView(new google.picker.DocsUploadView() //Upload
